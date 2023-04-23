@@ -44,26 +44,34 @@ function Detail() {
                   {movie.year}년·{movie.runtime}분
                 </span>
               </div>
-              <div className={styles.figure_container}>
-                <h3>Figures</h3>
-                <ul className={styles.figures}>
-                  <li>rate: {movie.rating}</li>
-                  <li>download: {movie.download_count}</li>
-                  <li>rate: {movie.like_count}</li>
-                </ul>
-              </div>
+              {(movie.rating || movie.figures || movie.download_count) && (
+                <div className={styles.figure_container}>
+                  <h3>Figures</h3>
+                  <ul className={styles.figures}>
+                    <li>rate: {movie.rating}</li>
+                    <li>download: {movie.download_count}</li>
+                    <li>rate: {movie.like_count}</li>
+                  </ul>
+                </div>
+              )}
 
-              <div className={styles.description_container}>
-                <h3>Description</h3>
-                <p>{movie.description_full}</p>
-              </div>
-              <div className={styles.genre_contaier}>
-                <h3>Genres</h3>
-                <ul>
-                  {movie.genres &&
-                    movie.genres.map((genre) => <li>{genre}</li>)}
-                </ul>
-              </div>
+              {movie.description_full && (
+                <div className={styles.description_container}>
+                  <h3>Description</h3>
+                  <p>{movie.description_full}</p>
+                </div>
+              )}
+
+              {movie.genres && (
+                <div className={styles.genre_contaier}>
+                  <h3>Genres</h3>
+                  <ul>
+                    {movie.genres.map((genre, index) => (
+                      <li key={index}>{genre}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
           </div>
         </div>
